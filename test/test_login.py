@@ -6,6 +6,7 @@ from config import *
 
 class TestLogin:
 
+    @pytest.mark.smoke
     def test_login_positive(self, session,login_url, registered_user):
         body = {
             "username": registered_user.username,
@@ -20,7 +21,7 @@ class TestLogin:
         "",
         "dsjhfdj@rty.bn"
     ])
-    def test_login_negative(self, session,invalid_username):
+    def test_login_negative(self, session, login_url, invalid_username):
         body = {
             "username": invalid_username,
             "password": TEST_PASSWORD,
