@@ -3,7 +3,7 @@ import pytest
 from conftest import *
 from faker import Faker
 fake = Faker()
-import data
+
 class TestRegistration:
 
     @pytest.mark.smoke
@@ -37,6 +37,7 @@ class TestRegistration:
         print(response.json())
         assert response.status_code in [400, 409]
         assert "User already exists" in response.json().values()
+
     @pytest.mark.auth
     @pytest.mark.negative
     @pytest.mark.parametrize("invalid_email", [
@@ -59,6 +60,7 @@ class TestRegistration:
         }
         session.post(registration_url, json=body, headers=headers)
         response = session.post(registration_url, json=body, headers=headers)
+        data = response.json()
         print(response.json())
         assert response.status_code == 400
         assert data ["message"] ["username"] == "must be a well-formed email address"
