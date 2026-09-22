@@ -15,6 +15,7 @@ class TestContacts:
         print(response.json()["message"])
         assert response.status_code == 200
         assert "Contact was added" in response.json()["message"]
+
     @pytest.mark.smoke
     def test_get_all_contacts_positive(self, session, add_contact_url, auth_headers):
         response = session.get(
@@ -38,10 +39,8 @@ class TestContacts:
     @pytest.mark.smoke
     def test_update_contact_positive(self, session, add_contact_url, auth_headers, create_contact):
         contact_id = create_contact
-
-        print(">>> Contact ID:", contact_id)
+        print("Contact ID:", contact_id)
         res1 = session.get(add_contact_url, headers=auth_headers)
-
 
         updated_contact = {
             "id": contact_id,
@@ -71,7 +70,6 @@ class TestContacts:
             "contacts"][0]
         print(res1)
         res1["name"] = "Robert"
-
         response = session.put(add_contact_url, headers=auth_headers, json=res1)
         print(response.json())
         assert response.status_code == 200
