@@ -69,11 +69,11 @@ class TestRegistration:
     @pytest.mark.negative
     @pytest.mark.parametrize("invalid_password", [
         "qwerty123$",
-        "Qwerty123!",
+        "QWERTY123$!",
         "Qwerty!$",
         "Qwerty123",
         "Qwer ty1$",
-        "Qwerty !123",
+        "Qwerty!123",
     ])
     def test_registration_negative_invalid_password(self, session, registration_url, invalid_password):
         user = User(fake.email(), invalid_password)
@@ -89,3 +89,4 @@ class TestRegistration:
         print(response.json())
         assert response.status_code == 400
         assert "Must contain at" in data["message"]["password"]
+        #
