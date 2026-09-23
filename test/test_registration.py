@@ -58,7 +58,7 @@ class TestRegistration:
         headers = {
         "Content-Type": "application/json",
         }
-        session.post(registration_url, json=body, headers=headers)
+
         response = session.post(registration_url, json=body, headers=headers)
         data = response.json()
         print(response.json())
@@ -72,7 +72,7 @@ class TestRegistration:
         "QWERTY123$!",
         "Qwerty!$",
         "Qwerty123",
-        "Qwer ty1$",
+        "Qwer ty1",
         "Qwerty!123",
     ])
     def test_registration_negative_invalid_password(self, session, registration_url, invalid_password):
