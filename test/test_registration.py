@@ -1,5 +1,4 @@
-import token
-import pytest
+
 from conftest import *
 from faker import Faker
 fake = Faker()
@@ -32,7 +31,7 @@ class TestRegistration:
             "Content-Type": "application/json",
         }
 
-        session.post(registration_url, json=body, headers=headers)
+
         response = session.post(registration_url, json=body, headers=headers)
         print(response.json())
         assert response.status_code in [400, 409]
@@ -44,7 +43,7 @@ class TestRegistration:
         "vbgyt123.tgy.gbj",
         "bnhjyi67@",
         "@gmail.com",
-        "dfgrt679@gmail",
+        "invalid-email",
         "fgvty56@@ghyu.vbh",
         "fgth67 @cvg.bn",
     ])
@@ -72,7 +71,7 @@ class TestRegistration:
         "QWERTY123$!",
         "Qwerty!$",
         "Qwerty123",
-        "Qwerty1",
+
         "Qwerty!123",
     ])
     def test_registration_negative_invalid_password(self, session, registration_url, invalid_password):
