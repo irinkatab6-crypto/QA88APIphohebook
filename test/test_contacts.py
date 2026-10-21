@@ -1,6 +1,5 @@
 from dataclasses import asdict
 from faker import Faker
-import random
 import pytest
 fake = Faker()
 

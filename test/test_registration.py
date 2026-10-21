@@ -32,8 +32,8 @@ class TestRegistration:
             "Content-Type": "application/json",
         }
 
+        session.post(registration_url, json=body, headers=headers)
         response = session.post(registration_url, json=body, headers=headers)
-        data = response.json()
         print(response.json())
         assert response.status_code in [400, 409]
         assert "User already exists" in response.json().values()
